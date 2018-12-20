@@ -1,0 +1,30 @@
+{
+    "name": "Stats",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "primaryKey": true,
+            "autoIncrement": true
+            },
+        "userId": {
+            "type": "integer",
+            "field": "UtilisateurId"
+        },
+        "levelId": {
+            "type": "integer",
+            "field": "LevelId"
+        },
+        "totalTime": {
+            "type": "integer"
+        },
+        "algoTime": {
+            "type": "integer"
+        },
+        "status": {
+            "type": "string"
+        },
+        "tryNumber": {
+            "type": "integer"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "secure": true,
+    "auth": {
+        "type": "OAuth2",
+        "user": "noreply.pensalgo@gmail.com",
+        "clientId": "171967089102-dgmkkl89pic18oaiusoor9prr6paimtl.apps.googleusercontent.com",
+        "clientSecret": "lFjYjTXMLXq8eW2yiI5gUgIO",
+        "accessToken": "ya29.GlsEBiIi53RFVTw4eh7tDBEYPRNbTgTKdTEKpZEZdfdxcOogL62buv3W8n2x7_JRku4hJsAw9nQIHeqyY8xsM1llubow7KU6gnf4WRzxZx3FqUHVBkya-TJ6OYPk",
+        "expires": 3600,
+        "refreshToken": "1/3xX0ILypuQfKZ90bN2yGD8ns1lvDYfgyDqnH3WbH3wE"
+    },
+    "sender": "'PensAlgo' <noreply.pensalgo@gmail.com>"
+}

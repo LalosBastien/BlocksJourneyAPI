@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+const { execSync } = require('child_process');
+const path = require('path');
+
+// ./bin/migration/create up env
+//   Available envs : [ 'dev', 'prod']
+//      ex : ./bin/migration/create migration_name dev
+
+const API_DIR = path.resolve(__dirname, `${__dirname}/../../`);
+const migrationDir = `${API_DIR}/lib/migrations`;
+const configDir = `${__dirname}/../../config/migration.db.config.json`;
+const migrateCmd = './node_modules/.bin/db-migrate';
+
+const env = process.argv[2];
+if (!env) {
+    console.log('Please specify the environment');
+    process.exit(0);
+}
+
+
+const command = `${migrateCmd} --env ${env} --config ${configDir} --migrations-dir ${migrationDir} up`;
+const output = execSync(command);
+console.log(output.toString('utf-8'));
+

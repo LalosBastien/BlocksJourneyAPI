@@ -1,0 +1,19 @@
+{
+    "name": "AccessToken",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "primaryKey": true,
+            "autoIncrement": true
+        },
+        "idUtilisateur": {
+            "type": "string"
+        },
+        "token": {
+            "type": "string"
+        },
+        "expireDate": {
+            "type": "date"
+        }
+    }
+}

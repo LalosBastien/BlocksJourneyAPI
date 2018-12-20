@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+const { exec } = require('child_process');
+require('../../config/migration.db.config.json')
+
+// ./bin/migration/create migration_name
+//      ex : ./bin/migration/create migration_name
+
+const configDir = `${__dirname}/../../config/migration.db.config.json`;
+const migrationsDir = `${__dirname}/../../lib/migrations`;
+const migrateCmd = './node_modules/.bin/db-migrate';
+
+const command = `${migrateCmd} --config ${configDir} --env dev --migrations-dir ${migrationsDir} create ${process.argv[2]}`;
+exec(command, (err, stdout, stderr) => {
+    if (err) {
+        console.log(err.message);
+        return;
+    }
+
+    console.log(stdout, stderr);
+});

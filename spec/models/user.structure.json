@@ -1,0 +1,34 @@
+{
+    "name": "Utilisateur",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "primaryKey": true,
+            "autoIncrement": true
+            },
+        "login": {
+            "type": "string"
+        },
+        "password": {
+            "type": "string"
+        },
+        "nom": {
+            "type": "string"
+        },
+        "prenom": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string"
+        },
+        "rue": {
+            "type": "string"
+        },
+        "CP": {
+            "type": "integer"
+        },
+        "ville": {
+            "type": "string"
+        }
+    }
+}

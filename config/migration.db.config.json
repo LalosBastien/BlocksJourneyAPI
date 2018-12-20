@@ -1,0 +1,16 @@
+{
+  "prod": {
+    "host": { "ENV" : "DB_HOST" },
+    "user": { "ENV" : "DB_USER" },
+    "password": { "ENV" : "DB_PASSWORD" },
+    "database": { "ENV" : "DB_NAME" },
+    "driver": "mysql"
+  },
+  "dev": {
+    "host": "127.0.0.1",
+    "user": "root",
+    "password": "root",
+    "database": "GPE",
+    "driver": "mysql"
+  }
+}

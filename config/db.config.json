@@ -1,0 +1,14 @@
+{
+        "dbType": "mysql",
+        "dbHost": "localhost",
+        "dbPort": "3306",
+        "dbSchema": "gpe",
+        "dbUsername": "root",
+        "dbPassword": "root",
+        "dbPool": {
+                "max": 5,
+                "min": 0,
+                "acquire": 30000,
+                "idle": 10000
+        }
+}
