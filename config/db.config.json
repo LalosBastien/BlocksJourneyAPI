@@ -2,7 +2,7 @@
         "dbType": "mysql",
         "dbHost": "localhost",
         "dbPort": "3306",
-        "dbSchema": "gpe",
+        "dbSchema": "GPE",
         "dbUsername": "root",
         "dbPassword": "root",
         "dbPool": {

@@ -1,0 +1,5 @@
+node_modules/*
+docker/*
+coverage/*
+README.md
+npm-debug.log
