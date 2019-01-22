@@ -1,4 +1,4 @@
-FROM node
+FROM node:11.7
 
 # Create app directory
 WORKDIR /app
@@ -9,6 +9,4 @@ COPY ./ /app/
 # Install dependencies
 RUN npm install
 
-EXPOSE 8080
 CMD [ "npm", "start" ]
-# CMD [ "printenv"]

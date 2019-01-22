@@ -6,13 +6,6 @@ import sequelize from './lib/middlewares/db.middleware';
 import fs from 'fs';
 import http from 'http';
 
-console.log('DB_HOST ' + process.env.DATABASE_HOST)
-console.log('DATABASE_PORT ' + process.env.DATABASE_PORT)
-console.log('DATABASE_TYPE ' + process.env.DATABASE_TYPE)
-console.log('DATABASE_USER ' + process.env.DATABASE_USER)
-console.log('DATABASE_PASSWORD ' + process.env.DATABASE_PASSWORD)
-console.log('DATABASE_SCHEMA ' + process.env.DATABASE_SCHEMA)
-
 let app = express();
 
 applyMiddlewares(app);

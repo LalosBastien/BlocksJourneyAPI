@@ -62,10 +62,10 @@ services:
 
 secrets:
     api_mysql_password:
-        file: api_mysql_password.txt
+        file: ../secrets/api_mysql_password.txt
         # external: true <= for prod
     api_mysql_root:
-        file: api_mysql_root.txt
+        file: ../secrets/api_mysql_root.txt
         # external: true <= for prod
 
 networks:
