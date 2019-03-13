@@ -1,6 +1,25 @@
 version: "3.1"
 
 services:
+    client:
+        image: gpe-client
+        environment:
+            - ENV=LOCAL
+            - API_HOST=api
+        ports:
+        - "4000:80"
+        links:
+            - api
+        networks:
+            - app-api
+        deploy:
+            mode: global
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+                window: 30s
+
     api:
         image: api
         environment:
@@ -17,6 +36,7 @@ services:
             - apidb
         networks:
             - db-api
+            - app-api
         deploy:
             restart_policy:
                 condition: on-failure
@@ -48,7 +68,7 @@ services:
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
         ports:
-            - 80
+            - "9000:80"
         environment:
             - MYSQL_USER=admin
             - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/api_mysql_root
@@ -70,6 +90,8 @@ secrets:
 
 networks:
     db-api:
+        driver: overlay
+    app-api:
         driver: overlay
 
 volumes:
