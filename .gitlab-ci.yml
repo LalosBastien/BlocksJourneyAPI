@@ -32,7 +32,7 @@ unit-test:
 
 # Run unit tests
 functional-test:
-  stage: validate
+  stage: quality
   only:
     - /^version-([0-9]+\.){2}[0-9]+$/
   script:
