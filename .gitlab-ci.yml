@@ -1,0 +1,52 @@
+###############
+# Definitions #
+###############
+
+stages:
+  - quality
+  - build
+
+before_script:
+  - export TAG_VERSION=${CI_COMMIT_REF_NAME}
+  - export PROJECT_NAME=api
+
+##############
+#    Jobs    #
+##############
+
+# Check javascript syntax rules
+lint-js:
+  image: node:10.15.1
+  stage: quality
+  script:
+    - npm install --loglevel warn
+    - npm run lint-js
+
+# Run unit tests
+unit-test:
+  image: node:10.15.1
+  stage: quality
+  script:
+    - npm install --loglevel warn
+    - npm run test-unit
+
+# Run unit tests
+functional-test:
+  stage: validate
+  only:
+    - /^version-([0-9]+\.){2}[0-9]+$/
+  script:
+    - npm install --loglevel warn
+    - npm run test-functional
+
+# ========== ONLY FOR TAGS x.x.x =========
+
+# Construct node and mysql images
+build:
+  stage: build
+  only:
+    - /([0-9]+\.){2}[0-9]+$/
+  except:
+    - branches
+  script:
+    - sudo docker build -t $PROJECT_NAME:$TAG_VERSION .

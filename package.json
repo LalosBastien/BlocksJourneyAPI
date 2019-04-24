@@ -17,7 +17,10 @@
   "scripts": {
     "start": "node -r @std/esm server.js",
     "test": "nyc babel-node spec/run.js",
-    "lint": "eslint lib/*"
+    "lint": "eslint lib/*",
+    "lint-js": "./node_modules/.bin/eslint . --fix",
+    "test-unit": "jest ./src/test/unit --passWithNoTests",
+    "test-functional": "jest ./src/test/functional --passWithNoTests"
   },
   "author": "",
   "license": "ISC",
@@ -32,6 +35,7 @@
     "dotenv": "^6.2.0",
     "express": "4.16.3",
     "http-status": "^1.2.0",
+    "jest": "^24.7.1",
     "joi": "^13.4.0",
     "mysql2": "1.6.4",
     "nodemailer": "^4.6.7",
