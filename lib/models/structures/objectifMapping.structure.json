@@ -1,0 +1,21 @@
+{
+    "name": "ObjectifMapping",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "primaryKey": true,
+            "autoIncrement": true
+            },
+        "objectifId": {
+            "type": "integer",
+            "field": "ObjectifId"
+        },
+        "levelId": {
+            "type": "integer",
+            "field": "LevelId"
+        },
+        "goal": {
+            "type": "integer"
+        }
+    }
+}
