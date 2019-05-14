@@ -20,6 +20,9 @@
         "algoTime": {
             "type": "integer"
         },
+        "energy": {
+            "type": "integer"
+        },
         "status": {
             "type": "string"
         },
