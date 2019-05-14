@@ -1,0 +1,16 @@
+{
+    "name": "Objectif",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "primaryKey": true,
+            "autoIncrement": true
+            },
+        "libelle": {
+            "type": "string"
+        },
+        "description": {
+            "type": "integer"
+        }
+    }
+}
