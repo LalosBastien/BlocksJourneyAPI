@@ -153,7 +153,8 @@
     "y": 250,
     "spriteWidth": 32,
     "spriteHeight": 48,
-    "facing": "right"
+    "facing": "right",
+    "initialEnergy": 1000
   },
   "physics": {
     "gravity": 500
