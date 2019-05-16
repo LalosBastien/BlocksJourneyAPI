@@ -156,6 +156,10 @@
     "facing": "right",
     "initialEnergy": 1000
   },
+  "audio": {
+    "bgSound": "bgsound.mp3",
+    "algoSound": "8-bit_happy.mp3"
+},
   "physics": {
     "gravity": 500
   },
