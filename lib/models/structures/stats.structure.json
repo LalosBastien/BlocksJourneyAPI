@@ -28,6 +28,9 @@
         },
         "tryNumber": {
             "type": "integer"
+        },
+        "stars":{
+            "type":"integer"
         }
     }
 }
