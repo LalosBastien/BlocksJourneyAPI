@@ -158,7 +158,7 @@
       "spriteWidth": 32,
       "spriteHeight": 48,
       "facing": "right",
-      "initialEnergy": 5000000000000
+      "initialEnergy": 5000
     },
     "audio": {
         "bgSound": "bgsound.mp3",
