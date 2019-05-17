@@ -110,13 +110,40 @@
             "y": 597
         },
         {
-        "name": "monster",
-        "id": 0,
-        "path": "assets/game/sprites/monster.png",
-        "spriteWidth": 32,
-        "spriteHeight": 32,
-        "x": 920,
-        "y": 120
+            "name": "monster",
+            "id": 0,
+            "path": "assets/game/sprites/monster.png",
+            "spriteWidth": 32,
+            "spriteHeight": 32,
+            "x": 920,
+            "y": 120
+        },
+        {
+            "name": "coin",
+            "id": 0,
+            "path": "assets/game/sprites/coin.png",
+            "spriteWidth": 22,
+            "spriteHeight": 22,
+            "x": 150,
+            "y": 185
+        },
+        {
+            "name": "coin",
+            "id": 1,
+            "path": "assets/game/sprites/coin.png",
+            "spriteWidth": 22,
+            "spriteHeight": 22,
+            "x": 200,
+            "y": 185
+        },
+        {
+            "name": "coin",
+            "id": 2,
+            "path": "assets/game/sprites/coin.png",
+            "spriteWidth": 22,
+            "spriteHeight": 22,
+            "x": 250,
+            "y": 185
         }
       ],
     "goal": {
