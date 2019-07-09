@@ -5,6 +5,7 @@ import applyMiddlewares from './lib/middlewares/express.middleware';
 import sequelize from './lib/middlewares/db.middleware';
 import fs from 'fs';
 import http from 'http';
+import https from 'https';
 
 let app = express();
 
@@ -16,12 +17,12 @@ app.use((err, req, res, next) => {
     res.status(err.code || err.status || 500).json({ error: err.message });
 });
 
-//const options = {
-//    key: fs.readFileSync('/sslcert/privkey1.pem'),
-//    cert: fs.readFileSync('/sslcert/fullchain1.pem')
-//};
+const options = {
+    key: fs.readFileSync('cert/key.pem'),
+    cert: fs.readFileSync('cert/fullchain.pem')
+};
 
-http.createServer(app)
+https.createServer(options, app)
   .listen(serverPort, function () {
       console.log(`Example app listening on port ${serverPort}`);
   });
