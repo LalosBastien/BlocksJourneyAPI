@@ -59,8 +59,8 @@
     "initialEnergy": 1000
   },
   "audio": {
-    "bgSound": "",
-    "algoSound": "8-bit_happy.mp3"
+    "bgSound": "bensound-cute.wav",
+    "algoSound": "sunny.wav"
 },
   "physics": {
     "gravity": 500
@@ -68,5 +68,5 @@
   "bootom": {
     "y": 300
   },
-  "toolbox": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xml xmlns=\"http://www.w3.org/1999/xhtml\" id=\"toolbox\" style=\"display: none;\">\n<category name=\"Mouvements\" colour=\"#a55a5a\">\n<block type=\"move\">\n<field name=\"DIRECTION\">Right</field>\n</block>\n<block type=\"run\">\n<field name=\"DIRECTION\">Right</field>\n</block>\n<block type=\"jump\" />\n</category>\n<category name=\"Boucles\" colour=\"#5CA65C\">\n<block type=\"controls_repeat_ext\">\n<value name=\"TIMES\">\n<shadow type=\"math_number\">\n<field name=\"NUM\">10</field>\n</shadow>\n</value>\n</block>\n</category>\n<category name=\"Conditions\" colour=\"#5CA65C\">\n<block type=\"controls_if\"></block>\n<block type=\"check_holes\">\n<value>\n<shadow></shadow>\n</value>\n</block>\n</category>\n</xml>"
+  "toolbox": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xml xmlns=\"http://www.w3.org/1999/xhtml\" id=\"toolbox\" style=\"display: none;\">\n<category name=\"Mouvements\" colour=\"#a55a5a\">\n<block type=\"move\">\n<field name=\"DIRECTION\">Right</field>\n</block>\n<block type=\"jump\" />\n</category>\n</xml>"
 }

@@ -43,6 +43,42 @@
     "background": "assets/game/background-level2.png"
   },
   "sprites": [
+    {
+      "name": "coin",
+      "id": 0,
+      "path": "assets/game/sprites/coin.png",
+      "spriteWidth": 22,
+      "spriteHeight": 22,
+      "x": 90,
+      "y": 130
+  },
+  {
+    "name": "coin",
+    "id": 1,
+    "path": "assets/game/sprites/coin.png",
+    "spriteWidth": 22,
+    "spriteHeight": 22,
+    "x": 380,
+    "y": 130
+},
+  {
+    "name": "coin",
+    "id": 2,
+    "path": "assets/game/sprites/coin.png",
+    "spriteWidth": 22,
+    "spriteHeight": 22,
+    "x": 90,
+    "y": 370
+},
+{
+  "name": "coin",
+  "id": 3,
+  "path": "assets/game/sprites/coin.png",
+  "spriteWidth": 22,
+  "spriteHeight": 22,
+  "x": 520,
+  "y": 370
+}
   ],
   "goal": {
     "path": "assets/game/sprites/star.png",
@@ -56,11 +92,11 @@
     "spriteWidth": 32,
     "spriteHeight": 48,
     "facing": "right",
-    "initialEnergy": 1500
+    "initialEnergy": 2000
   },
   "audio": {
-    "bgSound": "bgsound.mp3",
-    "algoSound": "8-bit_happy.mp3"
+    "bgSound": "bensound-cute.wav",
+    "algoSound": "sunny.wav"
 },
   "ladders":  [
     { "tileHeight": 3, "x": 160, "y": 160 }
@@ -77,5 +113,5 @@
   "physics": {
     "gravity": 500
   },
-  "toolbox": "<xml xmlns='http://www.w3.org/1999/xhtml' id='toolbox' style='display: none;'><category name='Mouvements' colour='#a55a5a'><block type='move'><field name='DIRECTION'>Right</field></block><block type='run'><field name='DIRECTION'>Right</field></block><block type='jump'></block><block type='interact'></block><block type='ladder'></block></category><category name='Boucles' colour='#5CA65C'><block type='controls_whileUntil'><value name='TIMES'><shadow type='math_number'><field name='NUM'>10</field></shadow></value></block><block type='controls_repeat_ext'><value name='TIMES'><shadow type='math_number'><field name='NUM'>10</field></shadow></value></block></category><category name=\"Conditions\" colour=\"#5CA65C\">\n<block type=\"controls_if\"></block>\n<block type=\"check_holes\">\n<value>\n<shadow></shadow></value></block>\n<block type=\"check_ladder\"></block>\n</category></xml>"
+  "toolbox": "<xml xmlns='http://www.w3.org/1999/xhtml' id='toolbox' style='display: none;'><category name='Mouvements' colour='#a55a5a'><block type='move'><field name='DIRECTION'>Right</field></block><block type='jump'></block><block type='interact'></block><block type='ladder'></block></category><category name='Boucles' colour='#5CA65C'><block type='controls_whileUntil'><value name='TIMES'><shadow type='math_number'><field name='NUM'>10</field></shadow></value></block><block type='controls_repeat_ext'><value name='TIMES'><shadow type='math_number'><field name='NUM'>10</field></shadow></value></block></category><category name=\"Conditions\" colour=\"#5CA65C\">\n<block type=\"controls_if\"></block>\n<block type=\"check_holes\">\n<value>\n<shadow></shadow></value></block>\n<block type=\"check_ladder\"></block>\n</category></xml>"
 }
