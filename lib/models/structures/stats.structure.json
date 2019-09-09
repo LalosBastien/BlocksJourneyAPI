@@ -20,11 +20,17 @@
         "algoTime": {
             "type": "integer"
         },
+        "energy": {
+            "type": "integer"
+        },
         "status": {
             "type": "string"
         },
         "tryNumber": {
             "type": "integer"
+        },
+        "stars":{
+            "type":"integer"
         }
     }
 }
