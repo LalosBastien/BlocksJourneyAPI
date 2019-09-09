@@ -1,19 +1,14 @@
 
-'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn(
-      'Stats',
-      'energy',
-      Sequelize.INTEGER
-    );
-  },
+    up: (queryInterface, Sequelize) => queryInterface.addColumn(
+        'Stats',
+        'energy',
+        Sequelize.INTEGER,
+    ),
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn(
-      'Stats',
-      'energy'
-    );
-  }
+    down: (queryInterface, Sequelize) => queryInterface.removeColumn(
+        'Stats',
+        'energy',
+    ),
 };
