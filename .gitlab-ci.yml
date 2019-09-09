@@ -1,0 +1,43 @@
+###############
+# Definitions #
+###############
+
+stages:
+  - quality
+  - build
+
+before_script:
+  - export TAG_VERSION=${CI_COMMIT_REF_NAME}
+  - export PROJECT_NAME=api
+
+##############
+#    Jobs    #
+##############
+
+# Check javascript syntax rules
+linter:
+  image: node:11.7
+  stage: quality
+  script:
+    - npm install --loglevel error
+    - npm run lint
+
+# Run unit tests
+unit-test:
+  image: node:11.7
+  stage: quality
+  script:
+    - npm install --loglevel error
+    - npm run tests
+
+# ========== ONLY FOR TAGS x.x.x =========
+
+# Construct node images
+build:
+  stage: build
+  only:
+    - /^version-([0-9]+\.){2}[0-9]+$/
+  except:
+    - branches
+  script:
+    - sudo docker build -t $PROJECT_NAME:$TAG_VERSION .

@@ -1,17 +1,18 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "description": "",
-    "version": "1.0.0",
-    "title": "Pensalgo API",
-    "contact": {
-      "email": "dev@pensalgo.net"
+    "swagger": "2.0",
+    "info": {
+      "description": "",
+      "version": "2.0.0",
+      "title": "BlocksJourney API",
+      "contact": {
+        "email": "dev@blocksjourney.fr"
+      }
+    },
+    "host:": "https://api.blocksjourney",
+    "tags": [],
+    "paths": {
+    },
+    "definitions": {
     }
-  },
-  "host:": "http://127.0.0.1",
-  "tags": [],
-  "paths": {
-  },
-  "definitions": {
   }
-}
+  
