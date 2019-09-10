@@ -1,8 +1,8 @@
 import { atService } from '../../lib/services';
 
 const dateImpl = global.Date;
-describe('AccessTokenService', async () => {
-    describe('findLastByIdUser', async () => {
+describe('AccessTokenService', () => {
+    describe('findLastByIdUser', () => {
         test('Should find last token by user id', async () => {
             const mockFunction = jest.fn();
             atService.model.findOne = mockFunction;
@@ -21,7 +21,7 @@ describe('AccessTokenService', async () => {
         });
     });
 
-    describe('findLastByIdUser', async () => {
+    describe('findLastByIdUser', () => {
         test('Should create a valid token', async () => {
             global.Date = dateImpl;
             const mockFunction = jest.fn(() => Promise.resolve());
@@ -47,7 +47,7 @@ describe('AccessTokenService', async () => {
             expect(paramPassed.token.length).toBe(18);
         });
     });
-    describe('isTokenValid', async () => {
+    describe('isTokenValid', () => {
         test('Should return true for valid token', async () => {
             global.Date = dateImpl;
             const mockToken = {
