@@ -28,7 +28,7 @@ unit-test:
   stage: quality
   script:
     - npm install --loglevel error
-    - npm run tests
+    - npm test
 
 # ========== ONLY FOR TAGS x.x.x =========
 
