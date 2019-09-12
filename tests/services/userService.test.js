@@ -45,6 +45,50 @@ describe('UserService', () => {
             const notU = await userService.findById(16567634);
             expect(notU).toEqual(null);
         });
+        test('Should return the user created previously ', async () => {
+            const u = await userService.findById(IdToTest,['id']);
+            expect(u).not.toEqual(null);
+            expect(Object.keys(u.dataValues).length).toEqual(2);
+            expect(u.dataValues.hasOwnProperty('id')).toBeTruthy()
+            expect(u.dataValues.hasOwnProperty('role')).toBeTruthy()
+            expect(u.dataValues.hasOwnProperty('login')).toBeFalsy()
+        });
+    })
+    describe('findByEmail',()=>{
+        test('Should return the user created previously ', async () => {
+            const u = await userService.findByEmail(userToTest.email);
+            expect(u).not.toEqual(null);
+        });
+        test('Should return null cause user with this email does not exist', async () => {
+            const notU = await userService.findByEmail('idont@exist');
+            expect(notU).toEqual(null);
+        });
+        test('Should return the user created previously ', async () => {
+            const u = await userService.findByEmail(userToTest.email,['email']);
+            expect(u).not.toEqual(null);
+            expect(Object.keys(u.dataValues).length).toEqual(2);
+            expect(u.dataValues.hasOwnProperty('email')).toBeTruthy()
+            expect(u.dataValues.hasOwnProperty('role')).toBeTruthy()
+            expect(u.dataValues.hasOwnProperty('login')).toBeFalsy()
+        });
+    })
+    describe('findByLogin',()=>{
+        test('Should return the user created previously ', async () => {
+            const u = await userService.findByLogin(userToTest.login);
+            expect(u).not.toEqual(null);
+        });
+        test('Should return null cause user with this login does not exist', async () => {
+            const notU = await userService.findByLogin('notauser');
+            expect(notU).toEqual(null);
+        });
+        test('Should return the user created previously ', async () => {
+            const u = await userService.findByLogin(userToTest.login,['login']);
+            expect(u).not.toEqual(null);
+            expect(Object.keys(u.dataValues).length).toEqual(2);
+            expect(u.dataValues.hasOwnProperty('login')).toBeTruthy()
+            expect(u.dataValues.hasOwnProperty('role')).toBeTruthy()
+            expect(u.dataValues.hasOwnProperty('id')).toBeFalsy()
+        });
     })
 
     describe('VerifToken', () => {
@@ -72,6 +116,14 @@ describe('UserService', () => {
                 expect(u.verifToken).toEqual(currentVerifToken);
                 expect(u.roleId).toEqual(userToTest.roleId);
             })
+            test('Should only return id and role',async ()=>{
+            let u = await userService.findByVerifToken(currentVerifToken,['id']);
+            expect(u).not.toEqual(null);
+            expect(Object.keys(u.dataValues).length).toEqual(2);
+            expect(u.dataValues.hasOwnProperty('id')).toBeTruthy()
+            expect(u.dataValues.hasOwnProperty('role')).toBeTruthy()
+            expect(u.dataValues.hasOwnProperty('login')).toBeFalsy()
+            })
         })
         describe('unsetVerifToken', () => {
             test('Should unset verifToken on specified user', async () => {
@@ -81,6 +133,14 @@ describe('UserService', () => {
                 expect(u.verifToken).toEqual(null);
             });
         })
-
+    })
+    describe('UpdatePassword',()=>{
+        test('Should set new password for test user',async()=>{
+            let newpassword = 'ceciestunnouveaumdp';
+            let update = await userService.updatePassword(IdToTest,newpassword);
+            expect(update).toEqual([1]);
+            const u = await userService.findById(IdToTest);
+            expect(u.password).toEqual(newpassword);
+        })
     })
 });
