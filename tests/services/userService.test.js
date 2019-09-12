@@ -1,11 +1,12 @@
 import { userService } from '../../lib/services';
 import sequelize from '../../lib/middlewares/db.middleware';
 
-afterAll(() => {
-    sequelize.close();
-});
+
 
 describe('UserService', () => {
+    afterAll(() => {
+        sequelize.close();
+    });
     let IdToTest;
     const userToTest = {
         login: 'test',
