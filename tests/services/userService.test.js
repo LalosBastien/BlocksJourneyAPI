@@ -1,5 +1,4 @@
 import { userService } from '../../lib/services';
-import sequelize from '../../lib/middlewares/db.middleware';
 
 
 
@@ -20,8 +19,8 @@ describe('UserService', () => {
     describe('Create', () => {
         test('Should create user with provided information + generatedId', async () => {
             let newId = 125;
-            const mockFunction = jest.fn((param) => { 
-                let newUser = {id:newId,...param,verifToken:null};
+            const mockFunction = jest.fn((param) => {
+                let newUser = { id: newId, ...param, verifToken: null };
                 users.push(newUser);
                 return Promise.resolve(newUser)
             });
@@ -32,7 +31,7 @@ describe('UserService', () => {
             let u = await promise;
 
             const paramPassed = mockFunction.mock.calls[0][0];
-            expect(mockFunction.mock.calls.length).toBe(1);            
+            expect(mockFunction.mock.calls.length).toBe(1);
             expect(typeof paramPassed).toBe('object');
             expect(Object.keys(paramPassed).length).toBe(9);
             expect(paramPassed.login).toBeDefined();
@@ -60,24 +59,24 @@ describe('UserService', () => {
     })
 
     describe('FindById', () => {
-        const mockFunction = jest.fn((filtre) => { 
-            let modelFindOne = users.filter(x =>{
+        const mockFunction = jest.fn((filtre) => {
+            let modelFindOne = users.filter(x => {
                 let pass = true;
-                for(let key of Object.keys(filtre.where)){
-                  if(x[key] != filtre.where[key]) pass = false;
+                for (let key of Object.keys(filtre.where)) {
+                    if (x[key] != filtre.where[key]) pass = false;
                 }
                 return pass;
             })
-            if(modelFindOne.length == 0 ) return null;
+            if (modelFindOne.length == 0) return null;
             let found = {}
-            if(filtre.attributes && filtre.attributes){
-                for(let key of filtre.attributes){
+            if (filtre.attributes && filtre.attributes) {
+                for (let key of filtre.attributes) {
                     found[key] = modelFindOne[key]
                 }
-            }else{
-                found = {...modelFindOne[0]}
+            } else {
+                found = { ...modelFindOne[0] }
             }
-            found.role = {id:1,name:"Etudiant",accessLevel:1 }
+            found.role = { id: 1, name: "Etudiant", accessLevel: 1 }
 
             return Promise.resolve(found);
         });
@@ -91,7 +90,7 @@ describe('UserService', () => {
             expect(notU).toEqual(null);
         });
         test('Should return the user created previously ', async () => {
-            const u = await userService.findById(idToTest,['id']);
+            const u = await userService.findById(idToTest, ['id']);
             expect(u).not.toEqual(null);
             expect(Object.keys(u).length).toEqual(2);
             expect(u.hasOwnProperty('id')).toBeTruthy()
@@ -99,7 +98,7 @@ describe('UserService', () => {
             expect(u.hasOwnProperty('login')).toBeFalsy()
         });
     })
-    describe('findByEmail',()=>{
+    describe('findByEmail', () => {
         test('Should return the user created previously ', async () => {
             const u = await userService.findByEmail(userToTest.email);
             expect(u).not.toEqual(null);
@@ -109,7 +108,7 @@ describe('UserService', () => {
             expect(notU).toEqual(null);
         });
         test('Should return the user created previously ', async () => {
-            const u = await userService.findByEmail(userToTest.email,['email']);
+            const u = await userService.findByEmail(userToTest.email, ['email']);
             expect(u).not.toEqual(null);
             expect(Object.keys(u).length).toEqual(2);
             expect(u.hasOwnProperty('email')).toBeTruthy()
@@ -117,7 +116,7 @@ describe('UserService', () => {
             expect(u.hasOwnProperty('login')).toBeFalsy()
         });
     })
-    describe('findByLogin',()=>{
+    describe('findByLogin', () => {
         test('Should return the user created previously ', async () => {
             const u = await userService.findByLogin(userToTest.login);
             expect(u).not.toEqual(null);
@@ -127,7 +126,7 @@ describe('UserService', () => {
             expect(notU).toEqual(null);
         });
         test('Should return the user created previously ', async () => {
-            const u = await userService.findByLogin(userToTest.login,['login']);
+            const u = await userService.findByLogin(userToTest.login, ['login']);
             expect(u).not.toEqual(null);
             expect(Object.keys(u).length).toEqual(2);
             expect(u.hasOwnProperty('login')).toBeTruthy()
@@ -138,17 +137,17 @@ describe('UserService', () => {
 
     describe('VerifToken', () => {
         let currentVerifToken;
-        const mockFunction = jest.fn((fields,filtre) => { 
-            let modelUpdate = users.filter(x =>{
+        const mockFunction = jest.fn((fields, filtre) => {
+            let modelUpdate = users.filter(x => {
                 let pass = true;
-                for(let key of Object.keys(filtre.where)){
-                  if(x[key] != filtre.where[key]) pass = false;
+                for (let key of Object.keys(filtre.where)) {
+                    if (x[key] != filtre.where[key]) pass = false;
                 }
                 return pass;
             })
-            if(modelUpdate.length == 0) return Promise.resolve([0]);
-            for(let x of modelUpdate){
-                for(let key of Object.keys(fields)){
+            if (modelUpdate.length == 0) return Promise.resolve([0]);
+            for (let x of modelUpdate) {
+                for (let key of Object.keys(fields)) {
                     x[key] = fields[key];
                 }
             }
@@ -178,13 +177,13 @@ describe('UserService', () => {
                 expect(u.verifToken).toEqual(currentVerifToken);
                 expect(u.roleId).toEqual(userToTest.roleId);
             })
-            test('Should only return id and role',async ()=>{
-            let u = await userService.findByVerifToken(currentVerifToken,['id']);
-            expect(u).not.toEqual(null);
-            expect(Object.keys(u).length).toEqual(2);
-            expect(u.hasOwnProperty('id')).toBeTruthy()
-            expect(u.hasOwnProperty('role')).toBeTruthy()
-            expect(u.hasOwnProperty('login')).toBeFalsy()
+            test('Should only return id and role', async () => {
+                let u = await userService.findByVerifToken(currentVerifToken, ['id']);
+                expect(u).not.toEqual(null);
+                expect(Object.keys(u).length).toEqual(2);
+                expect(u.hasOwnProperty('id')).toBeTruthy()
+                expect(u.hasOwnProperty('role')).toBeTruthy()
+                expect(u.hasOwnProperty('login')).toBeFalsy()
             })
         })
         describe('unsetVerifToken', () => {
@@ -196,10 +195,10 @@ describe('UserService', () => {
             });
         })
     })
-    describe('UpdatePassword',()=>{
-        test('Should set new password for test user',async()=>{
+    describe('UpdatePassword', () => {
+        test('Should set new password for test user', async () => {
             let newpassword = 'ceciestunnouveaumdp';
-            const promise = userService.updatePassword(idToTest,newpassword);
+            const promise = userService.updatePassword(idToTest, newpassword);
             expect(promise.then).toBeDefined();
             let update = await promise;
             expect(update).toEqual([1]);
