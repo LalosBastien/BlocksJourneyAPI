@@ -12,7 +12,7 @@ test('Instanciate services', () => {
 });
 
 describe('Test Service Class', () => {
-    let entities = [{ id: 44571, entityField: 'v1' },{ id: 467867, entityField: 'v32' }];
+    let entities = [{ id: 44571, entityField: 'v1' }, { id: 467867, entityField: 'v32' }];
     let S = new Service({});
 
     let idToTest;
@@ -64,7 +64,7 @@ describe('Test Service Class', () => {
             let found = {}
             if (filtre.attributes && filtre.attributes) {
                 for (let key of filtre.attributes) {
-                    found[key] = modelFindOne[key]
+                    found[key] = modelFindOne[0][key]
                 }
             } else {
                 found = { ...modelFindOne[0] }
@@ -77,6 +77,13 @@ describe('Test Service Class', () => {
             expect(entity).not.toEqual(null);
             expect(entity.id).toBeDefined();
             expect(entity.id).toEqual(idToTest);
+        });
+        test('Should return the entity created previously with only entityField', async () => {
+            const entity = await S.findById(idToTest, ['entityField']);
+            expect(entity).not.toEqual(null);
+            expect(entity.id).not.toBeDefined();
+            expect(entity.entityField).toBeDefined();
+            expect(entity.entityField).toEqual('v1');
         });
         test('Should return null cause entity with this id does not exist', async () => {
             const notEntity = await S.findById(16567634);
@@ -107,8 +114,7 @@ describe('Test Service Class', () => {
                 }
                 all.push(found)
             }
-
-            return Promise.resolve(modelFindAll);
+            return Promise.resolve(all);
         });
         S.model.findAll = mockFunction;
         test('Should return all entities stored', async () => {
@@ -117,15 +123,57 @@ describe('Test Service Class', () => {
             const all = await promise;
             expect(all).toEqual(entities);
         })
+        test('Should return all entities stored with only the passed field', async () => {
+            const promise = S.getAll(['entityField']);
+            expect(promise.then).toBeDefined()
+            const all = await promise;
+            expect(all).toBeDefined();
+            expect(all.length).toEqual(3);
+            for (let entity of all) {
+                expect(entity).not.toEqual(null);
+                expect(entity.id).not.toBeDefined();
+                expect(entity.entityField).toBeDefined();
+            }
+        })
 
     })
     describe('findArrayByField', () => {
         test('Should return all entities stored with field equal to value passed', async () => {
-            const promise = S.findArrayByField('entityField','v1');
+            const promise = S.findArrayByField('entityField', 'v1');
             expect(promise.then).toBeDefined();
             const fabf = await promise;
             expect(fabf.length).toEqual(2);
         })
+        test('Should return all entities stored with field equal to value passed with only entityField', async () => {
+            const promise = S.findArrayByField('entityField', 'v1', ['entityField']);
+            expect(promise.then).toBeDefined();
+            const fabf = await promise;
+            expect(fabf.length).toEqual(2);
+            for (let entity of fabf) {
+                expect(entity).not.toEqual(null);
+                expect(entity.id).not.toBeDefined();
+                expect(entity.entityField).toBeDefined();
+                expect(entity.entityField).toEqual('v1');
+            }
+        });
+    })
+    describe('findByField', () => {
+        test('Should return one entity stored with field equal to value passed', async () => {
+            const promise = S.findByField('entityField', 'v1')
+            expect(promise.then).toBeDefined();
+            const fbf = await promise;
+            expect(fbf)
+        })
+        test('Should return one entity stored with field equal to value passed with only entityField', async () => {
+            const promise = S.findByField('id', idToTest, ['entityField']);
+            expect(promise.then).toBeDefined();
+            const entity = await promise;
+            expect(entity).not.toEqual(null);
+            expect(entity.id).not.toBeDefined();
+            expect(entity.entityField).toBeDefined();
+            expect(entity.entityField).toEqual('v1');
+        });
+
     })
 
     describe('update', () => {
@@ -158,6 +206,22 @@ describe('Test Service Class', () => {
             expect(entity.entityField).toEqual('v2');
             expect(entity2.entityField).toEqual('v1');
         });
+    })
+    describe('delete', () => {
+        const mockFunction = jest.fn(function () {
+            if (!this && !this.id) return Promise.resolve([0]);
+            let ind = entities.indexOf(this);
+            entities.splice(ind, 1);
+            return Promise.resolve([1]);
+        });
+        Object.prototype.destroy = mockFunction
+        test('Should delete Object from entities', async () => {
+            const promise = S.delete(44571);
+            expect(promise.then).toBeDefined()
+            const del = await promise;
+            expect(del).toEqual([1]);
+            expect(entities.length).toEqual(2);
 
+        })
     })
 });
