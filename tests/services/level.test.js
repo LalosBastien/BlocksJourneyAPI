@@ -29,30 +29,66 @@ describe('levelService', () => {
         })
     })
     describe('validateLevels', () => {
-        const mockFunction = jest.fn((param) => {
-            let newId = Math.floor(Math.random() * (155 - 1) + 1);
-            let newEntity = { id: newId, ...param };
-            entities.push(newEntity);
-            return Promise.resolve(newEntity)
-        });
-        StatsModel.create = mockFunction;
-        const getLevels = jest.fn(function(){
-            return this.levels;
-        });
-        Object.prototype.getLevels = getLevels;
-        Object.prototype.save = Promise.resolve([1]);
         test('Should validate level status', async () => {
-            let promise = levelService.validateLevel(
+            const saveMock = jest.fn();
+            const stat = {
+                dataValues: {
+                    LevelId: 1, status: 'in_progress',
+                },
+                save: saveMock
+            };
+            const user = {
+                getLevels: jest.fn(async () => [{
+                    dataValues: {
+                        Stats:stat,
+                    },
+                }]),
+            };
+            const info = {
+                status: 'failed',
+                algoTime: 4,
+                energyConsumed: 250,
+                stars: 2,
+            };
+            await levelService.validateLevel(
                 { id: 1 },
-                { id: 1,levels:[{id:1,dataValues:{Stats:[]}}] },
-                {status:'failed', algoTime:4, energyConsumed:250, stars:2}
-                );
-            let newStat = await promise;
-
-
+                user,
+                info,
+            );
+            expect(saveMock.mock.calls.length).toBe(1);
+            //should test stats infos
         })
-    })
-    describe('getLEvelsWitHistory',()=>{
+
+        test('Should throw error when no level is in_progress', async () => {
+            const stat = {
+                dataValues: {
+                    LevelId: 1, status: 'done',
+                }
+            };
+            const user = {
+                getLevels: jest.fn(async () => [{
+                    dataValues: {
+                        Stats:stat,
+                    },
+                }]),
+            };
+            const info = {
+                status: 'failed',
+                algoTime: 4,
+                energyConsumed: 250,
+                stars: 2,
+            };
+            const promise = levelService.validateLevel(
+                { id: 1 },
+                user,
+                info,
+            );
+            //yeah, strange syntax ^^'
+            expect(promise).rejects.toEqual(new Error('Level not started'))
+        })
+    });
+
+    describe('getLevelsWitHistory',()=>{
         const mockFunction = jest.fn(()=>Promise.resolve([]));
         levelService.model.findAll = mockFunction;
         test('Should return lvels with Users',()=>{
