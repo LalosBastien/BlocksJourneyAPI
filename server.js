@@ -18,25 +18,25 @@ app.use((err, req, res, next) => {
 });
 
 // if (process.env.TAGS === 'https') {
-const options = {
-    key: fs.readFileSync('cert/key.pem'),
-    cert: fs.readFileSync('cert/fullchain.pem'),
-};
+// const options = {
+//     key: fs.readFileSync('cert/key.pem'),
+//     cert: fs.readFileSync('cert/fullchain.pem'),
+// };
 
-https.createServer(options, app)
-    .listen(serverPort, () => {
-        console.log(`HTTPS on port ${serverPort}`);
-    });
-// } else {
-//     http.createServer(app)
-//     .listen(serverPort, function () {
-//         console.log("HOST " + process.env.DATABASE_HOST)
-//         console.log("PORT " + process.env.DATABASE_PORT)
-//         console.log("USR " + process.env.DATABASE_USER)
-//         console.log("PWD " + process.env.DATABASE_PASSWORD)
-
-//         console.log(`HTTP on port ${serverPort}`);
+// https.createServer(options, app)
+//     .listen(serverPort, () => {
+//         console.log(`HTTPS on port ${serverPort}`);
 //     });
+// } else {
+    http.createServer(app)
+    .listen(serverPort, function () {
+        console.log("HOST " + process.env.DATABASE_HOST)
+        console.log("PORT " + process.env.DATABASE_PORT)
+        console.log("USR " + process.env.DATABASE_USER)
+        console.log("PWD " + process.env.DATABASE_PASSWORD)
+
+        console.log(`HTTP on port ${serverPort}`);
+    });
 // }
 
 sequelize.sync().then(() => {
