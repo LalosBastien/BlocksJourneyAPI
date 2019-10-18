@@ -5,6 +5,7 @@
 stages:
   - quality
   - build
+  - deploy
 
 before_script:
   - export TAG_VERSION=${CI_COMMIT_REF_NAME}
