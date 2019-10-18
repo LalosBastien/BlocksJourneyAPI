@@ -56,7 +56,7 @@ publish:
   except:
     - branches
   script:
-    - docker tag -t $PROJECT_NAME-api:$TAG_VERSION $REPO/$PROJECT_NAME-api:latest
+    - docker tag $PROJECT_NAME-api:$TAG_VERSION $REPO/$PROJECT_NAME-api:latest
 
 # Deploy to swarm
 deploy:
