@@ -1,70 +1,23 @@
 version: "3.6"
 
 services:
-    dbapi:
-        image: mysql:5.7
-        ports:
-            - 3306
-        environment:
-            - MYSQL_DATABASE=GPE
-            - MYSQL_USER=admin
-            - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/api_mysql_root
-            - MYSQL_PASSWORD_FILE=/run/secrets/api_mysql_password
-        secrets:
-            - api_mysql_root
-            - api_mysql_password
-        networks:
-            - gpe-net
-        deploy:
-            restart_policy:
-                condition: on-failure
-                delay: 5s
-                max_attempts: 3
-                window: 30s
-
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin:latest
-        ports:
-            - 8080:80
-        environment:
-            - MYSQL_USER=admin
-            - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/api_mysql_root
-            - MYSQL_PASSWORD_FILE=/run/secrets/api_mysql_password
-            - PMA_HOST=dbapi
-        secrets:
-            - api_mysql_root
-            - api_mysql_password
-        networks:
-            - gpe-net
-        deploy:    
-            restart_policy:
-                condition: on-failure
-                delay: 5s
-                max_attempts: 3
-                window: 30s
-    
     api:
-        image: api
+        image: bastienlalos/gpe-api:latest
         environment:
-            - ENV=LOCAL
+            - ENV=PROD
             - TAGS=https
             - DATABASE_HOST=dbapi
             - DATABASE_PORT=3306
             - DATABASE_TYPE=mysql
             - DATABASE_USER=root
-            - DATABASE_PASSWORD=root
             - DATABASE_PASSWORD_FILE=/run/secrets/api_mysql_root
             - DATABASE_SCHEMA=GPE
-        depends_on:
-
-            - dbapi
         secrets:
             - api_mysql_root
         ports:
             - 3000:3000
         networks:
             - gpe-net
-            - traefik_network
         deploy:
             restart_policy:
                 condition: on-failure
@@ -73,12 +26,8 @@ services:
                 window: 30s
 
 secrets:
-    api_mysql_password:
-        file: secrets/api_mysql_password
-        #external: true
     api_mysql_root:
-        file: secrets/api_mysql_root
-        #external: true
+        external: true
 
 networks:
     gpe-net:
