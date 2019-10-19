@@ -26,7 +26,7 @@ services:
                 window: 30s
 
 secrets:
-    api_mysql_root:
+    gpe_api_mysql_root:
         external: true
 
 networks:
