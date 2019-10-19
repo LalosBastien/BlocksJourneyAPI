@@ -10,10 +10,10 @@ services:
             - DATABASE_PORT=3306
             - DATABASE_TYPE=mysql
             - DATABASE_USER=root
-            - DATABASE_PASSWORD_FILE=/run/secrets/api_mysql_root
+            - DATABASE_PASSWORD_FILE=/run/secrets/gpe_api_mysql_root
             - DATABASE_SCHEMA=GPE
         secrets:
-            - api_mysql_root
+            - gpe_api_mysql_root
         ports:
             - 3000:3000
         networks:
