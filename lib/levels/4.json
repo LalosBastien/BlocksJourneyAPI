@@ -1,5 +1,5 @@
 {
-    "level": { 
+    "level": {
         "height":64,
         "infinite":false,
         "layers":[
@@ -32,7 +32,7 @@
                 "tilecount":68,
                 "tileheight":16,
                 "tilewidth":16
-               }, 
+               },
                {
                 "columns":17,
                 "firstgid":69,
@@ -49,7 +49,7 @@
         "tilewidth":16,
         "type":"map",
         "version":1,
-        "width":66   
+        "width":66
     },
     "images": {
       "background": "assets/game/background-level2.png"
@@ -161,8 +161,8 @@
       "initialEnergy": 5000
     },
     "audio": {
-        "bgSound": "bensound-cute.wav",
-        "algoSound": "sunny.wav"
+        "bgSound": "bensound-cute.mp3",
+        "algoSound": "sunny.mp3"
     },
     "physics": {
       "gravity": 500
@@ -172,4 +172,3 @@
     },
     "toolbox": "<xml xmlns='http://www.w3.org/1999/xhtml' id='toolbox' style='display: none;'><category name='Mouvements' colour='#a55a5a'><block type='move'><field name='DIRECTION'>Right</field></block><block type='jump'></block><block type='interact'></block><block type='ladder'></block></category><category name='Boucles' colour='#5CA65C'><block type='controls_whileUntil'><value name='TIMES'><shadow type='math_number'><field name='NUM'>10</field></shadow></value></block><block type='controls_repeat_ext'><value name='TIMES'><shadow type='math_number'><field name='NUM'>10</field></shadow></value></block></category><category name=\"Conditions\" colour=\"#5CA65C\">\n<block type=\"controls_if\"></block>\n<block type=\"check_holes\">\n<value>\n<shadow></shadow></value></block>\n<block type=\"check_ladder\"></block>\n</category></xml>"
   }
-  

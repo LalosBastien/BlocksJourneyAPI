@@ -95,8 +95,8 @@
     "initialEnergy": 2000
   },
   "audio": {
-    "bgSound": "bensound-cute.wav",
-    "algoSound": "sunny.wav"
+    "bgSound": "bensound-cute.mp3",
+    "algoSound": "sunny.mp3"
 },
   "ladders":  [
     { "tileHeight": 3, "x": 160, "y": 160 }
