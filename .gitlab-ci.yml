@@ -36,7 +36,7 @@ unit-test:
 
 # Construct node images
 build:
-  tags: 
+  tags:
     - gpe-runner
   stage: build
   only:
@@ -48,7 +48,7 @@ build:
 
 # Push image to registry
 publish:
-  tags: 
+  tags:
     - gpe-runner
   stage: build
   only:
@@ -57,10 +57,11 @@ publish:
     - branches
   script:
     - docker tag $PROJECT_NAME-api:$TAG_VERSION $REPO/$PROJECT_NAME-api:latest
+    - docker push $REPO/$PROJECT_NAME-api:latest
 
 # Deploy to swarm
 deploy:
-  tags: 
+  tags:
     - gpe-runner
   stage: deploy
   only:
