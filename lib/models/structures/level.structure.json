@@ -9,6 +9,9 @@
         "name": {
             "type": "string"
         },
+        "help": {
+            "type": "string"
+        },
         "difficulty": {
             "type": "integer"
         }

@@ -76,7 +76,7 @@
     "path": "assets/game/sprites/coin.png",
     "spriteWidth": 22,
     "spriteHeight": 22,
-    "x": 90,
+    "x": 380,
     "y": 370
 },
 {
@@ -108,8 +108,8 @@
     "initialEnergy": 1500
   },
   "audio": {
-    "bgSound": "bensound-cute.wav",
-    "algoSound": "sunny.wav"
+    "bgSound": "bensound-cute.mp3",
+    "algoSound": "sunny.mp3"
 },
   "physics": {
     "gravity": 500
