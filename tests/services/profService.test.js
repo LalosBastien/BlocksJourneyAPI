@@ -23,7 +23,7 @@ describe('ProfService', () => {
             roleId: 1,
         }]
     }; 
-    describe('ladder',()=>{
+    describe('students',()=>{
         const mockFunction = jest.fn(function(){
             let students = null;
             if(this.students) students = this.students;
@@ -32,7 +32,7 @@ describe('ProfService', () => {
         Object.prototype.getStudents = mockFunction;
 
         test('Should return the list of students associated with a user',async ()=> {
-            const promise = profService.ladder(userToTest);
+            const promise = profService.students(userToTest);
             expect(promise.then).toBeDefined();
             const students = await promise;
             expect(students).toBeDefined();
