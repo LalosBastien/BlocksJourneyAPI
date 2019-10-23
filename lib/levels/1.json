@@ -74,7 +74,7 @@
     "spriteWidth": 32,
     "spriteHeight": 48,
     "facing": "right",
-    "initialEnergy": 1000
+    "initialEnergy": 1500
   },
   "audio": {
     "bgSound": "bensound-cute.mp3",
