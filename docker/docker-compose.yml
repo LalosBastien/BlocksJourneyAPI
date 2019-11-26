@@ -4,8 +4,8 @@ services:
     api:
         image: bastienlalos/gpe-api:latest
         environment:
-            - ENV=PROD
-            - TAGS=https
+            - ENV=LOCAL
+            - TAGS=http
             - DATABASE_HOST=dbapi
             - DATABASE_PORT=3306
             - DATABASE_TYPE=mysql
