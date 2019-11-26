@@ -33,7 +33,7 @@
     "mysql2": "1.6.4",
     "nodemailer": "^4.6.7",
     "random-token": "0.0.8",
-    "sequelize": "4.38.0",
+    "sequelize": "5.15.1",
     "swagger-ui-express": "^3.0.10"
   },
   "devDependencies": {
